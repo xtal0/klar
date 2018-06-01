@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/coreos/clair/api/v3/clairpb"
-	"github.com/optiopay/klar/docker"
-	"github.com/optiopay/klar/utils"
+	"github.com/xtal0/klar/docker"
+	"github.com/xtal0/klar/utils"
 	"google.golang.org/grpc"
 )
 
@@ -134,12 +134,7 @@ func (a *apiV1) Analyze(image *docker.Image) ([]*Vulnerability, error) {
 	for _, f := range envelope.Layer.Features {
 		for _, v := range f.Vulnerabilities {
 			v.FeatureName = f.Name
-			v.FeatureVersion = f.Version
-			//the for loop uses the same variable for "v", reloading with new values
-			//since we are appending a pointer to the variable to the slice, we need to create a copy of the struct
-			//otherwise the slice winds up with multiple pointers to the same struct
-			vulnerability := v
-			vs = append(vs, &vulnerability)
+			vs = append(vs, &v)
 		}
 	}
 	return vs, nil
@@ -184,12 +179,7 @@ func (a *apiV3) Analyze(image *docker.Image) ([]*Vulnerability, error) {
 		for _, v := range f.Vulnerabilities {
 			cv := convertVulnerability(v)
 			cv.FeatureName = f.Name
-			cv.FeatureVersion = f.Version
-			//the for loop uses the same variable for "cv", reloading with new values
-			//since we are appending a pointer to the variable to the slice, we need to create a copy of the struct
-			//otherwise the slice winds up with multiple pointers to the same struct
-			vulnerability := cv
-			vs = append(vs, vulnerability)
+			vs = append(vs, cv)
 		}
 	}
 	return vs, nil

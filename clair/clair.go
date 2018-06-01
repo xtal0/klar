@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/optiopay/klar/docker"
+	"github.com/xtal0/klar/docker"
 )
 
 const EMPTY_LAYER_BLOB_SUM = "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
@@ -45,16 +45,15 @@ type feature struct {
 
 // Vulnerability represents vulnerability entity returned by Clair
 type Vulnerability struct {
-	Name           string                 `json:"Name,omitempty"`
-	NamespaceName  string                 `json:"NamespaceName,omitempty"`
-	Description    string                 `json:"Description,omitempty"`
-	Link           string                 `json:"Link,omitempty"`
-	Severity       string                 `json:"Severity,omitempty"`
-	Metadata       map[string]interface{} `json:"Metadata,omitempty"`
-	FixedBy        string                 `json:"FixedBy,omitempty"`
-	FixedIn        []feature              `json:"FixedIn,omitempty"`
-	FeatureName    string                 `json:"featureName",omitempty`
-	FeatureVersion string                 `json:"featureName",omitempty`
+	Name          string                 `json:"Name,omitempty"`
+	NamespaceName string                 `json:"NamespaceName,omitempty"`
+	Description   string                 `json:"Description,omitempty"`
+	Link          string                 `json:"Link,omitempty"`
+	Severity      string                 `json:"Severity,omitempty"`
+	Metadata      map[string]interface{} `json:"Metadata,omitempty"`
+	FixedBy       string                 `json:"FixedBy,omitempty"`
+	FixedIn       []feature              `json:"FixedIn,omitempty"`
+	FeatureName   string                 `json:"featureName",omitempty`
 }
 
 type layerError struct {

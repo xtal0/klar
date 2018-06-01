@@ -47,11 +47,11 @@ need to be booted with `-insecure-tls` for this to work.
 
 * `DOCKER_TIMEOUT` - timeout in minutes when trying to fetch layers from a docker registry
 
+* `DOCKER_REGISTRY` - the Docker registry to connect to. Default is Docker Hub.
+
 * `REGISTRY_INSECURE` - Allow Klar to access insecure registries (HTTP only). Default is `false`.
 
 * `JSON_OUTPUT` - Output JSON, not plain text. Default is `false`.
-
-* `WHITELIST_FILE` - Path to the YAML file with the CVE whitelist. Look at `whitelist-example.yaml` for the file format.
 
 Usage:
 
@@ -96,11 +96,11 @@ There is no permanent username/password for Amazon ECR, the credentials must be 
     DOCKER_USER=AWS DOCKER_PASSWORD=${PASSWORD} ./klar ${REGISTRY}/my-image
 
 ## Google GCR support
-For authentication against GCR (Google Cloud Registry), the easiest way is to use the [application default credentials](https://developers.google.com/identity/protocols/application-default-credentials). These only work when running Klar from GCP. The only requirement is the Google Cloud SDK. 
+For authentication against GCR (Google Cloud Registry), the easiest way is to use the [application default credentials](https://developers.google.com/identity/protocols/application-default-credentials). These only work when running Klar from GCP. The only requirement is the Google Cloud SDK.
 
     DOCKER_USER=oauth2accesstoken
     DOCKER_PASSWORD="$(gcloud auth application-default print-access-token)"
-    
+
 With Docker:
 
     DOCKER_USER=oauth2accesstoken

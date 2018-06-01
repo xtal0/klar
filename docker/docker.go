@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/optiopay/klar/utils"
+	"github.com/xtal0/klar/utils"
 )
 
 const (
@@ -92,6 +92,7 @@ type Config struct {
 	User             string
 	Password         string
 	Token            string
+	Registry         string
 	InsecureTLS      bool
 	InsecureRegistry bool
 	Timeout          time.Duration
@@ -163,6 +164,10 @@ func NewImage(conf *Config) (*Image, error) {
 				nameParts = append(nameParts, part)
 			}
 		}
+	}
+
+	if conf.Registry != "" {
+		registry = conf.Registry
 	}
 
 	if port != "" {
